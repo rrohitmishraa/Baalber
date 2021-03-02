@@ -1,10 +1,16 @@
 package com.trikown.baalber;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -23,11 +29,15 @@ public class SplashScreenActivity extends AppCompatActivity {
     private void delaySplashScreen() {
 
         //SplashScreen delay
-        Completable.timer(5, TimeUnit.SECONDS,
+        Completable.timer(2, TimeUnit.SECONDS,
                 AndroidSchedulers.mainThread())
                 .subscribe(() -> {
-                    //After SplashScreen
-                    Toast.makeText(this, "Finish", Toast.LENGTH_SHORT).show();
+
+                    //Check if Already Logged in
+                    Intent i = new Intent(this, LoginActivity.class);
+                    startActivity(i);
+
                 });
+
     }
 }
