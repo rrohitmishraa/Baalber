@@ -2,6 +2,7 @@ package com.trikown.baalber;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,9 +35,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                 .subscribe(() -> {
 
                     //Check if Already Logged in
-                    Intent i = new Intent(this, LoginActivity.class);
+                    Intent i = new Intent(this, SelectScreen.class);
                     startActivity(i);
-
+                    overridePendingTransition(0, 0);
                 });
 
     }

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Baalber">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".SelectScreen">
+        </activity>
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/SplashScreenTheme">

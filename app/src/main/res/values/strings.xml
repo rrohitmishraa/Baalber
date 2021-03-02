@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Baalber.</string>
+    <string name="app_name">baalber</string>
+    <string name="app_name_with_dot">baalber.</string>
     <string name="with_phone">Sign In with Phone</string>
     <string name="with_google">Sign In with Google</string>
 </resources>

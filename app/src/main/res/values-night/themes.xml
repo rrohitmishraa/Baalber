@@ -2,15 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.Baalber" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/lightGreen</item>
-        <item name="colorPrimaryVariant">@color/midGreen</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/darkGreen</item>
-        <item name="colorSecondaryVariant">@color/darkGreen</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/darkGreen</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <item name="fontFamily" tools:targetApi="l">@font/montserrat_bold</item>
         <!-- Customize your theme here. -->
     </style>
