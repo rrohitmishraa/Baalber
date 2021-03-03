@@ -22,21 +22,22 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_screen);
 
-        delaySplashScreen();
+        //delaySplashScreen();
+
+        startActivity(new Intent(this, SelectScreen.class));
+        overridePendingTransition(0, 0);
     }
 
     private void delaySplashScreen() {
 
         //SplashScreen delay
-        Completable.timer(2, TimeUnit.SECONDS,
+        Completable.timer(1, TimeUnit.SECONDS,
                 AndroidSchedulers.mainThread())
                 .subscribe(() -> {
 
                     //Check if Already Logged in
-                    Intent i = new Intent(this, SelectScreen.class);
-                    startActivity(i);
+                    startActivity(new Intent(this, SelectScreen.class));
                     overridePendingTransition(0, 0);
                 });
 
