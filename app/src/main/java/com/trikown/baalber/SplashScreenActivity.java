@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
+import com.trikown.baalber.Utils.CircularScreenReveal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,10 +25,11 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //delaySplashScreen();
+        delaySplashScreen();
 
         startActivity(new Intent(this, SelectScreen.class));
         overridePendingTransition(0, 0);
+
     }
 
     private void delaySplashScreen() {
@@ -35,10 +38,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         Completable.timer(1, TimeUnit.SECONDS,
                 AndroidSchedulers.mainThread())
                 .subscribe(() -> {
-
-                    //Check if Already Logged in
-                    startActivity(new Intent(this, SelectScreen.class));
-                    overridePendingTransition(0, 0);
                 });
 
     }

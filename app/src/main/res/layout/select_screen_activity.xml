@@ -1,160 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/xSelectRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:padding="20dp"
+    android:background="@color/white"
     tools:context=".SelectScreen">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="Choose"
-            android:textColor="@color/black"
-            android:textSize="65sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:text="your option"
-            android:textSize="20sp" />
-
-    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:gravity="center"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Choose"
+                android:textColor="@color/black"
+                android:textSize="65sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="your option"
+                android:textColor="@color/grey"
+                android:textSize="20sp" />
+
+        </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/xBtnShop"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:scaleX="0.9"
-            android:scaleY="0.9"
-            android:layout_centerVertical="true"
-            android:background="@color/blue"
-            android:elevation="5dp"
-            android:padding="8dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/barberIcon"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/montserrat"
-                android:text="I have a"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+            <LinearLayout
+                android:id="@+id/xBtnShop"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/card_blue"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:scaleX="0.9"
+                android:scaleY="0.9">
 
-            <ImageView
-                android:id="@+id/barberIcon"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_barber" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/barberIcon"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/montserrat"
+                    android:text="I have"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/barberIcon"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="SHOP"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/barberIcon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_barber" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/barberIcon"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="SHOP"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/xBtnCustomer"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="-130dp"
+                android:layout_toRightOf="@id/xBtnShop"
+                android:background="@drawable/card_black"
+                android:elevation="9dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:scaleX="1"
+                android:scaleY="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/customerIcon"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/montserrat"
+                    android:text="I want a"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/customerIcon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_chair" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/customerIcon"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="HAIRCUT"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/xBtnCustomer"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:scaleX="1"
-            android:scaleY="1"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="-80dp"
-            android:layout_toRightOf="@id/xBtnShop"
-            android:background="@color/black"
-            android:elevation="9dp"
-            android:padding="8dp">
+        <!--<ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/xBtnNext"
+            android:src="@drawable/ic_next_black" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/customerIcon"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/montserrat"
-                android:text="I want a"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+        <TextView
+            android:id="@+id/xBtnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/btn_black"
+            android:fontFamily="@font/montserrat"
+            android:gravity="left|center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Continue as Customer"
+            android:textColor="@color/white" />-->
 
-            <ImageView
-                android:id="@+id/customerIcon"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_chair" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/customerIcon"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="HAIRCUT"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/xBtnNext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/btn_black"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center|center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Continue as Customer"
+            android:textColor="@color/white" />
 
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/xBtnNext"
-        android:src="@drawable/ic_next_black" />
-
-    <TextView
-        android:id="@+id/xBtnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/btn_black"
-        android:fontFamily="@font/montserrat"
-        android:gravity="left|center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="Continue as Customer"
-        android:textColor="@color/white" />
-
-    <!--<TextView
-        android:id="@+id/xBtnNext"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/btn_black"
-        android:drawableEnd="@drawable/ic_next"
-        android:fontFamily="@font/montserrat"
-        android:gravity="left|center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="Continue as Customer"
-        android:textColor="@color/white"
-        android:textSize="18sp" />-->
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

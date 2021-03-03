@@ -6,15 +6,20 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.widget.RelativeLayout;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import com.trikown.baalber.Utils.CircularScreenReveal;
 
 public class SelectScreen extends AppCompatActivity {
 
-    RelativeLayout mBtnShop, mBtnCustomer;
+    LinearLayout mBtnShop, mBtnCustomer;
+    CoordinatorLayout mSelectRootLayout;
     TextView mBtnNext;
     String accountType = "Customer";
 
@@ -27,6 +32,11 @@ public class SelectScreen extends AppCompatActivity {
         mBtnCustomer = findViewById(R.id.xBtnCustomer);
         mBtnShop = findViewById(R.id.xBtnShop);
         mBtnNext = findViewById(R.id.xBtnNext);
+
+        mSelectRootLayout = findViewById(R.id.xSelectRootLayout);
+
+        CircularScreenReveal circularScreenReveal = new CircularScreenReveal(this);
+        circularScreenReveal.layoutCheck(savedInstanceState, mSelectRootLayout);
 
         mBtnShop.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -136,5 +146,13 @@ public class SelectScreen extends AppCompatActivity {
 
         mBtnNext.setText("Continue as " + contAs);
         mBtnNext.setBackgroundResource(btnBackground);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 }

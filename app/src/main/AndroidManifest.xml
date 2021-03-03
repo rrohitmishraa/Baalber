@@ -9,10 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Baalber">
-        <activity android:name=".SelectScreen"></activity>
-        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".SelectScreen"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Transparent"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".SplashScreenActivity"
+            android:noHistory="true"
             android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

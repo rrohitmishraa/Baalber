@@ -15,7 +15,13 @@
     </style>
 
     <style name="SplashScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowBackground">@drawable/black_splash_screen</item>
         <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 </resources>
