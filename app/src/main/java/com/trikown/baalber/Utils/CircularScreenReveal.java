@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 
-import com.trikown.baalber.LoginActivity;
+import com.trikown.baalber.R;
 
 public class CircularScreenReveal {
     Context ctx;
@@ -46,7 +49,6 @@ public class CircularScreenReveal {
     }
 
     public void circularRevealActivity(CoordinatorLayout layout) {
-
         int cx = layout.getWidth() / 2;
         int cy = layout.getHeight() / 2;
 
@@ -59,6 +61,15 @@ public class CircularScreenReveal {
         // make the view visible and start the animation
         layout.setVisibility(View.VISIBLE);
         circularReveal.start();
+    }
+
+    public void setStatusBarColor() {
+        Window window = ((Activity)ctx).getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.setStatusBarColor(ContextCompat.getColor(ctx, R.color.black));
+        }
     }
 
     public void reverseCircularReveal(CoordinatorLayout layout) {

@@ -10,15 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Baalber">
         <activity
-            android:name=".SelectScreen"
+            android:name=".Activity.Dashboard"
             android:launchMode="singleTask"
             android:theme="@style/Theme.Transparent"></activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activity.SelectionScreen"
+            android:fitsSystemWindows="false"
             android:launchMode="singleTask"
             android:theme="@style/Theme.Transparent" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".Activity.Login"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Transparent" />
+        <activity
+            android:name=".Activity.SplashScreen"
             android:noHistory="true"
             android:theme="@style/SplashScreenTheme">
             <intent-filter>

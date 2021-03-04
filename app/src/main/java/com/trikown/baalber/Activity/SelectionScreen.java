@@ -1,22 +1,26 @@
-package com.trikown.baalber;
+package com.trikown.baalber.Activity;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 
+import com.trikown.baalber.R;
 import com.trikown.baalber.Utils.CircularScreenReveal;
+import com.trikown.baalber.Utils.Exit;
 
-public class SelectScreen extends AppCompatActivity {
+public class SelectionScreen extends AppCompatActivity {
 
     LinearLayout mBtnShop, mBtnCustomer;
     CoordinatorLayout mSelectRootLayout;
@@ -27,7 +31,8 @@ public class SelectScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.select_screen_activity);
+        setContentView(R.layout.selection_screen_activity);
+        CircularScreenReveal circularScreenReveal = new CircularScreenReveal(this);
 
         mBtnCustomer = findViewById(R.id.xBtnCustomer);
         mBtnShop = findViewById(R.id.xBtnShop);
@@ -35,7 +40,7 @@ public class SelectScreen extends AppCompatActivity {
 
         mSelectRootLayout = findViewById(R.id.xSelectRootLayout);
 
-        CircularScreenReveal circularScreenReveal = new CircularScreenReveal(this);
+        circularScreenReveal.setStatusBarColor();
         circularScreenReveal.layoutCheck(savedInstanceState, mSelectRootLayout);
 
         mBtnShop.setOnTouchListener((v, event) -> {
@@ -47,6 +52,8 @@ public class SelectScreen extends AppCompatActivity {
                 reducer.setTarget(mBtnShop);
                 reducer.start();
 
+                mBtnCustomer.setEnabled(false);
+
                 return true;
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
 
@@ -55,6 +62,8 @@ public class SelectScreen extends AppCompatActivity {
                 AnimatorSet gainer = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.regain_size);
                 gainer.setTarget(mBtnShop);
                 gainer.start();
+
+                mBtnCustomer.setEnabled(true);
 
 
                 // perform changes to the selection and next button
@@ -85,6 +94,8 @@ public class SelectScreen extends AppCompatActivity {
                 reducer.setTarget(mBtnCustomer);
                 reducer.start();
 
+                mBtnShop.setEnabled(false);
+
                 return true;
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
 
@@ -93,6 +104,8 @@ public class SelectScreen extends AppCompatActivity {
                 AnimatorSet gainer = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.regain_size);
                 gainer.setTarget(mBtnCustomer);
                 gainer.start();
+
+                mBtnShop.setEnabled(true);
 
                 // perform changes to the selection and next button
                 mBtnCustomer.postDelayed(() -> {
@@ -114,7 +127,7 @@ public class SelectScreen extends AppCompatActivity {
         });
 
         mBtnNext.setOnClickListener(v -> {
-            Intent i = new Intent(this, LoginActivity.class);
+            Intent i = new Intent(this, Login.class);
             i.putExtra("accountType", accountType);
             startActivity(i);
         });
@@ -150,9 +163,7 @@ public class SelectScreen extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent a = new Intent(Intent.ACTION_MAIN);
-        a.addCategory(Intent.CATEGORY_HOME);
-        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(a);
+        Exit exit = new Exit(SelectionScreen.this);
+        exit.exitActivity();
     }
 }
