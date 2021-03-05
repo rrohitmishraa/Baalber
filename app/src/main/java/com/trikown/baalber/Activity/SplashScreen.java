@@ -1,17 +1,13 @@
 package com.trikown.baalber.Activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
+import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.trikown.baalber.R;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -30,11 +26,13 @@ public class SplashScreen extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
-        if (user != null) {
-            startActivity(new Intent(this, Dashboard.class));
-        } else {
-            startActivity(new Intent(this, SelectionScreen.class));
-        }
-        overridePendingTransition(0, 0);
+        new Handler().postDelayed(() -> {
+            if (user != null) {
+                startActivity(new Intent(this, Dashboard.class));
+            } else {
+                startActivity(new Intent(this, SelectionScreen.class));
+            }
+//            overridePendingTransition(0, 0);
+        }, 100);
     }
 }

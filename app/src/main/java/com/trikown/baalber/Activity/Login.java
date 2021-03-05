@@ -27,7 +27,7 @@ import com.trikown.baalber.Utils.CircularScreenReveal;
 public class Login extends AppCompatActivity {
 
     CoordinatorLayout mLoginRootLayout;
-    TextView mBtnPhoneLogin, mBtnGoogleLogin;
+    TextView mBtnGoogleLogin;
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
 
@@ -39,12 +39,10 @@ public class Login extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         mLoginRootLayout = findViewById(R.id.xLoginRootLayout);
-        mBtnPhoneLogin = findViewById(R.id.xBtnPhoneLogin);
         mBtnGoogleLogin = findViewById(R.id.xBtnGoogleLogin);
 
         //Circular reveal code
         CircularScreenReveal circularScreenReveal = new CircularScreenReveal(this);
-        circularScreenReveal.setStatusBarColor();
         circularScreenReveal.layoutCheck(savedInstanceState, mLoginRootLayout);
 
         //Receiving account type from selection screen
@@ -58,10 +56,6 @@ public class Login extends AppCompatActivity {
 
         mBtnGoogleLogin.setOnClickListener(v -> {
             createGoogleSignInRequest();
-        });
-
-        mBtnPhoneLogin.setOnClickListener(v -> {
-            Toast.makeText(this, "Phone Login", Toast.LENGTH_SHORT).show();
         });
     }
 

@@ -4,9 +4,12 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -32,7 +35,6 @@ public class SelectionScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selection_screen_activity);
-        CircularScreenReveal circularScreenReveal = new CircularScreenReveal(this);
 
         mBtnCustomer = findViewById(R.id.xBtnCustomer);
         mBtnShop = findViewById(R.id.xBtnShop);
@@ -40,7 +42,7 @@ public class SelectionScreen extends AppCompatActivity {
 
         mSelectRootLayout = findViewById(R.id.xSelectRootLayout);
 
-        circularScreenReveal.setStatusBarColor();
+        CircularScreenReveal circularScreenReveal = new CircularScreenReveal(this);
         circularScreenReveal.layoutCheck(savedInstanceState, mSelectRootLayout);
 
         mBtnShop.setOnTouchListener((v, event) -> {
@@ -165,5 +167,6 @@ public class SelectionScreen extends AppCompatActivity {
     public void onBackPressed() {
         Exit exit = new Exit(SelectionScreen.this);
         exit.exitActivity();
+        super.onBackPressed();
     }
 }

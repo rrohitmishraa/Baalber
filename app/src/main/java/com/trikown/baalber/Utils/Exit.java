@@ -1,5 +1,6 @@
 package com.trikown.baalber.Utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -15,5 +16,6 @@ public class Exit {
         a.addCategory(Intent.CATEGORY_HOME);
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(a);
+        ((Activity)context).finish();
     }
 }

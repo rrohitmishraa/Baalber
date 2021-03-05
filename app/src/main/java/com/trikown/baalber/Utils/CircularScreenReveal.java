@@ -3,8 +3,10 @@ package com.trikown.baalber.Utils;
 import android.animation.Animator;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewTreeObserver;
@@ -63,15 +65,6 @@ public class CircularScreenReveal {
         circularReveal.start();
     }
 
-    public void setStatusBarColor() {
-        Window window = ((Activity)ctx).getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.setStatusBarColor(ContextCompat.getColor(ctx, R.color.black));
-        }
-    }
-
     public void reverseCircularReveal(CoordinatorLayout layout) {
         int cx = layout.getWidth() / 2;
         int cy = layout.getHeight() / 2;
@@ -88,7 +81,7 @@ public class CircularScreenReveal {
             @Override
             public void onAnimationEnd(Animator animator) {
                 layout.setVisibility(View.INVISIBLE);
-                ((Activity)ctx).finish();
+                ((Activity) ctx).finish();
             }
 
             @Override
