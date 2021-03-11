@@ -19,12 +19,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.trikown.baalber.R;
 import com.trikown.baalber.Utils.CircularScreenReveal;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     CoordinatorLayout mLoginRootLayout;
     TextView mBtnGoogleLogin;
@@ -34,7 +33,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_activity);
+        setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -101,7 +100,7 @@ public class Login extends AppCompatActivity {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener((task) -> {
                     if(task.isSuccessful()) {
-                        startActivity(new Intent(this, Dashboard.class));
+                        startActivity(new Intent(this, DashboardActivity.class));
                         finish();
                     } else {
                         Snackbar.make(findViewById(R.id.xLoginRootLayout), "Authentication Failde", Snackbar.LENGTH_SHORT).show();
@@ -113,7 +112,7 @@ public class Login extends AppCompatActivity {
     public void onBackPressed() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             //Calling reverse reveal from CircularReveal class
-            CircularScreenReveal circularScreenReveal = new CircularScreenReveal(Login.this);
+            CircularScreenReveal circularScreenReveal = new CircularScreenReveal(LoginActivity.this);
             circularScreenReveal.reverseCircularReveal(mLoginRootLayout);
         } else {
             super.onBackPressed();

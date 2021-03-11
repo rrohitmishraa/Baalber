@@ -4,26 +4,19 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.content.ContextCompat;
 
 import com.trikown.baalber.R;
 import com.trikown.baalber.Utils.CircularScreenReveal;
 import com.trikown.baalber.Utils.Exit;
 
-public class SelectionScreen extends AppCompatActivity {
+public class SelectionScreenActivity extends AppCompatActivity {
 
     LinearLayout mBtnShop, mBtnCustomer;
     CoordinatorLayout mSelectRootLayout;
@@ -34,7 +27,7 @@ public class SelectionScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.selection_screen_activity);
+        setContentView(R.layout.activity_selection_screen);
 
         mBtnCustomer = findViewById(R.id.xBtnCustomer);
         mBtnShop = findViewById(R.id.xBtnShop);
@@ -129,7 +122,7 @@ public class SelectionScreen extends AppCompatActivity {
         });
 
         mBtnNext.setOnClickListener(v -> {
-            Intent i = new Intent(this, Login.class);
+            Intent i = new Intent(this, LoginActivity.class);
             i.putExtra("accountType", accountType);
             startActivity(i);
         });
@@ -165,7 +158,7 @@ public class SelectionScreen extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Exit exit = new Exit(SelectionScreen.this);
+        Exit exit = new Exit(SelectionScreenActivity.this);
         exit.exitActivity();
         super.onBackPressed();
     }

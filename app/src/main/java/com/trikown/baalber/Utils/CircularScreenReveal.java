@@ -36,7 +36,7 @@ public class CircularScreenReveal {
                 viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-                        ////Calling reveal from CircularReveal class
+                        //Calling reveal from CircularReveal class
                         circularRevealActivity(layout);
 
                         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
@@ -51,6 +51,7 @@ public class CircularScreenReveal {
     }
 
     public void circularRevealActivity(CoordinatorLayout layout) {
+        //Getting the center of the screen
         int cx = layout.getWidth() / 2;
         int cy = layout.getHeight() / 2;
 

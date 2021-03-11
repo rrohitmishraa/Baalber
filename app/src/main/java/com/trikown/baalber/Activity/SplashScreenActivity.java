@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
@@ -28,11 +28,13 @@ public class SplashScreen extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
             if (user != null) {
-                startActivity(new Intent(this, Dashboard.class));
+                startActivity(new Intent(this, DashboardActivity.class));
             } else {
-                startActivity(new Intent(this, SelectionScreen.class));
+                startActivity(new Intent(this, SelectionScreenActivity.class));
             }
-//            overridePendingTransition(0, 0);
-        }, 100);
+
+            finish();
+            overridePendingTransition(0, 0);
+        }, 200);
     }
 }

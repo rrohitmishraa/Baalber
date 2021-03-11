@@ -1,4 +1,4 @@
-package com.trikown.baalber.Fragment.BottomNav;
+package com.trikown.baalber.Fragment.Profile;
 
 import android.os.Bundle;
 
@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 
 import com.trikown.baalber.R;
 
-public class Home extends Fragment {
+public class ShopDetailsFragment extends Fragment {
 
     View v;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.home_fragment, container, false);;
+        v = inflater.inflate(R.layout.fragment_shop_details, container, false);
 
 
 
