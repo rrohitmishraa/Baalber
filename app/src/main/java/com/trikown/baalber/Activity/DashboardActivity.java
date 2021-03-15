@@ -48,7 +48,6 @@ public class DashboardActivity extends AppCompatActivity {
         transaction.replace(R.id.xFragmentContainer, new HomeFragment());
         transaction.commit();
 
-
         bottomNavigation();
     }
 
