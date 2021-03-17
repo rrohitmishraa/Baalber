@@ -53,9 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             mLoginRootLayout.setBackgroundResource(R.drawable.blue_splash_screen);
         }
 
-        mBtnGoogleLogin.setOnClickListener(v -> {
-            createGoogleSignInRequest();
-        });
+        mBtnGoogleLogin.setOnClickListener(v -> createGoogleSignInRequest());
     }
 
     private void createGoogleSignInRequest() {
@@ -103,19 +101,15 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(this, DashboardActivity.class));
                         finish();
                     } else {
-                        Snackbar.make(findViewById(R.id.xLoginRootLayout), "Authentication Failde", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(R.id.xLoginRootLayout), "Authentication Failed", Snackbar.LENGTH_SHORT).show();
                     }
                 });
     }
 
     @Override
     public void onBackPressed() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //Calling reverse reveal from CircularReveal class
-            CircularScreenReveal circularScreenReveal = new CircularScreenReveal(LoginActivity.this);
-            circularScreenReveal.reverseCircularReveal(mLoginRootLayout);
-        } else {
-            super.onBackPressed();
-        }
+        //Calling reverse reveal from CircularReveal class
+        CircularScreenReveal circularScreenReveal = new CircularScreenReveal(LoginActivity.this);
+        circularScreenReveal.reverseCircularReveal(mLoginRootLayout);
     }
 }

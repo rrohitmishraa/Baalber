@@ -124,23 +124,12 @@ public class SelectionScreenActivity extends AppCompatActivity {
         mBtnNext.setOnClickListener(v -> {
             Intent i = new Intent(this, LoginActivity.class);
             i.putExtra("accountType", accountType);
+            overridePendingTransition(0, 0);
             startActivity(i);
         });
     }
 
     private void changeSize(float sValue, float cValue, float sElevation, float cElevation, String contAs, int btnBackground) {
-
-        // change the height and width of selector button on click
-
-        /*RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mBtnShop.getLayoutParams();
-        params.height = sValue; //(475) & 200 in  xml
-        params.width = sValue;
-        mBtnShop.setLayoutParams(params);
-
-        RelativeLayout.LayoutParams params2 = (RelativeLayout.LayoutParams) mBtnCustomer.getLayoutParams();
-        params2.height = cValue; //(380) & 160 in xml
-        params2.width = cValue;
-        mBtnCustomer.setLayoutParams(params2);*/
 
         mBtnCustomer.setScaleX(cValue);
         mBtnCustomer.setScaleY(cValue);
@@ -156,10 +145,4 @@ public class SelectionScreenActivity extends AppCompatActivity {
         mBtnNext.setBackgroundResource(btnBackground);
     }
 
-    @Override
-    public void onBackPressed() {
-        Exit exit = new Exit(SelectionScreenActivity.this);
-        exit.exitActivity();
-        super.onBackPressed();
-    }
 }
