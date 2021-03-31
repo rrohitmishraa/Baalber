@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="60dp"
+    android:elevation="8dp">
 
     <TextView
         android:id="@+id/xTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
         android:fontFamily="@font/montserrat_bold"
-        android:gravity="left|center"
+        android:gravity="center"
         android:text="@string/app_name"
         android:textColor="@color/black"
         android:textSize="25sp" />
