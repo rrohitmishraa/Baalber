@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.trikown.baalber.Fragment.Profile.PersonalDetailsFragment;
-import com.trikown.baalber.Fragment.Profile.ShopDetailsFragment;
+import com.trikown.baalber.Fragment.BottomNav.PersonalFragment;
+import com.trikown.baalber.Fragment.BottomNav.ShopFragment;
 
 public class ProfileTabsAdapter extends FragmentPagerAdapter {
 
@@ -22,9 +22,9 @@ public class ProfileTabsAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new PersonalDetailsFragment();
+                return new ShopFragment();
             case 1:
-                return new ShopDetailsFragment();
+                return new PersonalFragment();
             default:
                 return null;
         }

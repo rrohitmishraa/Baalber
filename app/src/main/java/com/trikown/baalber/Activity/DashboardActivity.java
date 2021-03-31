@@ -3,7 +3,6 @@ package com.trikown.baalber.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -13,7 +12,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.trikown.baalber.Fragment.BottomNav.HomeFragment;
-import com.trikown.baalber.Fragment.BottomNav.ProfileFragment;
+import com.trikown.baalber.Fragment.BottomNav.PersonalFragment;
+import com.trikown.baalber.Fragment.BottomNav.ShopFragment;
 import com.trikown.baalber.R;
 import com.trikown.baalber.Utils.CircularScreenReveal;
 
@@ -60,9 +60,17 @@ public class DashboardActivity extends AppCompatActivity {
                     //transaction.addToBackStack("dashboard");
                     transaction.commit();
                     break;
+
+                case R.id.menu_shop:
+                    transaction = fm.beginTransaction();
+                    transaction.replace(R.id.xFragmentContainer, new ShopFragment());
+                    //transaction.addToBackStack("dashboard");
+                    transaction.commit();
+                    break;
+
                 case R.id.menu_profile:
                     transaction = fm.beginTransaction();
-                    transaction.replace(R.id.xFragmentContainer, new ProfileFragment());
+                    transaction.replace(R.id.xFragmentContainer, new PersonalFragment());
                     //transaction.addToBackStack("dashboard");
                     transaction.commit();
                     break;

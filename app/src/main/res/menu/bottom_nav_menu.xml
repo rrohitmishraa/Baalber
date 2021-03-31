@@ -10,6 +10,14 @@
         app:cnb_textColor="@color/black" />
 
     <item
+        android:id="@+id/menu_shop"
+        android:icon="@drawable/ic_shop"
+        android:title="Home"
+        app:cnb_backgroundColor="@color/white"
+        app:cnb_iconColor="@color/black"
+        app:cnb_textColor="@color/black" />
+
+    <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_profile"
         android:title="Profile"

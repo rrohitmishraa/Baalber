@@ -14,7 +14,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.trikown.baalber.R;
 import com.trikown.baalber.Utils.CircularScreenReveal;
-import com.trikown.baalber.Utils.Exit;
 
 public class SelectionScreenActivity extends AppCompatActivity {
 
@@ -60,7 +59,6 @@ public class SelectionScreenActivity extends AppCompatActivity {
 
                 mBtnCustomer.setEnabled(true);
 
-
                 // perform changes to the selection and next button
                 mBtnShop.postDelayed(() -> {
 
@@ -70,7 +68,7 @@ public class SelectionScreenActivity extends AppCompatActivity {
                     reducer.setTarget(mBtnCustomer);
                     reducer.start();
 
-                    accountType = "Shop Owner";
+                    accountType = "ShopOwner";
                     changeSize(1f, 0.9f, 20f, 10f, accountType, R.drawable.btn_blue);
                 }, 190);
 
@@ -140,9 +138,7 @@ public class SelectionScreenActivity extends AppCompatActivity {
         mBtnShop.setElevation(sElevation); //20f for big & 8f for small
         mBtnCustomer.setElevation(cElevation);
 
-
         mBtnNext.setText("Continue as " + contAs);
         mBtnNext.setBackgroundResource(btnBackground);
     }
-
 }

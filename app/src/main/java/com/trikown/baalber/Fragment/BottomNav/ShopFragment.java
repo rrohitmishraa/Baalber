@@ -1,4 +1,4 @@
-package com.trikown.baalber.Fragment.Profile;
+package com.trikown.baalber.Fragment.BottomNav;
 
 import android.os.Bundle;
 
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.trikown.baalber.R;
 
-public class ShopDetailsFragment extends Fragment {
+public class ShopFragment extends Fragment {
 
     View v;
 

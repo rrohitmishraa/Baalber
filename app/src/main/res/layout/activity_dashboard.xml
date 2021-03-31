@@ -27,14 +27,4 @@
         android:elevation="8dp"
         />
 
-    <!--<com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/xBottomNavigationBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:background="@color/blue"
-        app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemIconTint="@drawable/bottom_nav_selector"/>-->
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
