@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/xCard"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:layout_marginBottom="20dp"
+    android:elevation="8dp"
+    app:cardCornerRadius="12dp">
+
+    <ImageView
+        android:id="@+id/xShopImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/black_overlay"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/xShopName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="Rohit Shop"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/xRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/montserrat"
+            android:text="4.3 / 5"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/montserrat"
+            android:text="8AM - 8PM"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

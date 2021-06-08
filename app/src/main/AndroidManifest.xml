@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Baalber">
+        <activity android:name=".Activity.Customer.ConfirmBooking"></activity>
+        <activity android:name=".Activity.Customer.BookAppointment"></activity>
         <activity
             android:name=".Activity.DashboardActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.Transparent"></activity>
+            android:theme="@style/Theme.Transparent" />
         <activity
             android:name=".Activity.SelectionScreenActivity"
             android:fitsSystemWindows="false"

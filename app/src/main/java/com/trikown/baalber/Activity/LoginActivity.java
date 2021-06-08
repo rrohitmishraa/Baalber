@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
             } catch (Exception e) {
-                Toast.makeText(this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -135,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                                     //save googleId in Shared Preference
                                     SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.sharedData), MODE_PRIVATE).edit();
                                     editor.putString("googleId", account.getId());
+                                    editor.putString("accountType", accountType);
                                     editor.apply();
                                 });
 

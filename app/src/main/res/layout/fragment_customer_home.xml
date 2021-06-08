@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/xToolbar"
+        layout="@layout/layout_toolbar" />
+
+    <EditText
+        android:id="@+id/xSearchBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/xToolbar"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bg_circular_black_outline"
+        android:hint="Search - Shop, Area, Piconde"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:paddingRight="60dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/subText"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/xBtnSearch"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/xToolbar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/btn_black"
+        android:padding="12dp"
+        android:src="@drawable/ic_search" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/xSearchBar"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Shops in your area"
+            android:textColor="@color/black" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/xHomeRecyclerviewC"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+</RelativeLayout>

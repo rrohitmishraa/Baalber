@@ -1,9 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.BottomNav.ShopFragment">
+    android:orientation="vertical"
+    android:background="@color/white">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <include layout="@layout/layout_toolbar" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/xProfilePic"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="50dp"
+            android:background="@drawable/bg_circular_black_outline"
+            android:padding="2dp"
+            android:src="@drawable/ic_default_user" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:text="Name"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/xName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:textColorHint="@color/subText"
+            android:background="@drawable/bg_black_outline"
+            android:drawableLeft="@drawable/ic_user"
+            android:drawablePadding="20dp"
+            android:hint="Enter the name of your shop"
+            android:inputType="text"
+            android:padding="10dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:text="Email"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/xEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_black_outline"
+            android:drawableLeft="@drawable/ic_address"
+            android:drawablePadding="20dp"
+            android:hint="Enter your name"
+            android:textColorHint="@color/subText"
+            android:padding="10dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:text="Phone Number"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/xContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_black_outline"
+            android:drawableLeft="@drawable/ic_contact"
+            android:drawablePadding="20dp"
+            android:hint="Enter your copntact number"
+            android:textColorHint="@color/subText"
+            android:inputType="text"
+            android:padding="10dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:text="Timings"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/xOpeningTIme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_black_outline"
+            android:drawableLeft="@drawable/ic_address"
+            android:drawablePadding="20dp"
+            android:hint="Enter your name"
+            android:textColorHint="@color/subText"
+            android:padding="10dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/xBtnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/btn_black"
+            android:gravity="center_horizontal"
+            android:padding="15dp"
+            android:text="SAVE"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</ScrollView>

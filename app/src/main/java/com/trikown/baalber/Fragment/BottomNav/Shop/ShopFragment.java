@@ -1,4 +1,4 @@
-package com.trikown.baalber.Fragment.BottomNav;
+package com.trikown.baalber.Fragment.BottomNav.Shop;
 
 import android.os.Bundle;
 

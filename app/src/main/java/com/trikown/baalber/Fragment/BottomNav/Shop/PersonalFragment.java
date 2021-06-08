@@ -1,4 +1,4 @@
-package com.trikown.baalber.Fragment.BottomNav;
+package com.trikown.baalber.Fragment.BottomNav.Shop;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,8 @@ import com.trikown.baalber.R;
 public class PersonalFragment extends Fragment {
 
     View v;
-    TextInputEditText mName, mEmail;
+    EditText mName, mContact;
+    TextView mEmail;
     FirebaseFirestore db;
 
     @Override

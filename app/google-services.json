@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "543487767498",
-    "project_id": "baalber-app",
-    "storage_bucket": "baalber-app.appspot.com"
+    "project_number": "69401691092",
+    "project_id": "app-baalber",
+    "storage_bucket": "app-baalber.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:543487767498:android:1f965a6e7b08959eb09533",
+        "mobilesdk_app_id": "1:69401691092:android:3fc1c9512e7e2375fa4c41",
         "android_client_info": {
           "package_name": "com.trikown.baalber"
         }
       },
       "oauth_client": [
         {
-          "client_id": "543487767498-ghsr22mitcdi3gc4k8cbsg5usktvo0o1.apps.googleusercontent.com",
+          "client_id": "69401691092-86j3om5k5qc6iqcd789882gunvaq3a9f.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.trikown.baalber",
-            "certificate_hash": "afde8e8c240b7dd05db77eed3d87db9ee9b72112"
+            "certificate_hash": "08d32c616697e4ce8ce89b2f9c1c29ca3aa057dc"
           }
         },
         {
-          "client_id": "543487767498-dpmsj4h98g95t405g58mmrthgqmkm5p4.apps.googleusercontent.com",
+          "client_id": "69401691092-d4rf2m7nje1c23hc66232d3husa6kgg4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyApXevyIdLgmMHzPXphM7hCcdwSm82LMo8"
+          "current_key": "AIzaSyAPXULEEf7NFDuFtEXlrOuKHKSY_aBjj8c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "543487767498-dpmsj4h98g95t405g58mmrthgqmkm5p4.apps.googleusercontent.com",
+              "client_id": "69401691092-d4rf2m7nje1c23hc66232d3husa6kgg4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
