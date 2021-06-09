@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         //different screens for different account types
         if (accountType.equalsIgnoreCase("customer")) {
             mLoginRootLayout.setBackgroundResource(R.drawable.black_splash_screen);
-        } else {
+        } else if(accountType.equalsIgnoreCase("shopOwner")) {
             mLoginRootLayout.setBackgroundResource(R.drawable.blue_splash_screen);
         }
 

@@ -2,8 +2,11 @@ package com.trikown.baalber.Activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -25,6 +28,7 @@ public class DashboardActivity extends AppCompatActivity {
     ChipNavigationBar mBottomNavigationBar;
     FragmentManager fm;
     View v;
+    ProgressBar mProgressBar;
     FragmentTransaction transaction;
     ViewPager mHomeViewPager;
 
@@ -35,6 +39,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         mDashboardRootLayout = findViewById(R.id.xDashboardRootLayout);
         mBottomNavigationBar = findViewById(R.id.xBottomNavigationBar);
+        mProgressBar = findViewById(R.id.xProgressBar);
 
         mBottomNavigationBar.setItemSelected(R.id.menu_home, true);
 
@@ -48,18 +53,25 @@ public class DashboardActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         transaction = fm.beginTransaction();
 
+        mProgressBar.setVisibility(View.VISIBLE);
+
         SharedPreferences sp = getSharedPreferences(getString(R.string.sharedData), MODE_PRIVATE);
-        String accountType = sp.getString("accountType", "customer");
 
-        if (accountType.equalsIgnoreCase("shopOwner")) {
-            bottomNavigationShop();
-            transaction.replace(R.id.xFragmentContainer, new HomeFragment());
-        } else {
-            bottomNavigationCustomer();
-            transaction.replace(R.id.xFragmentContainer, new HomeFragmentC());
-        }
+        (new Handler()).postDelayed(() -> {
+            String accountType = sp.getString("accountType", "");
 
-        transaction.commit();
+            if (accountType.equalsIgnoreCase("shopOwner")) {
+                transaction.replace(R.id.xFragmentContainer, new HomeFragment());
+                bottomNavigationShop();
+            } else if (accountType.equalsIgnoreCase("customer")) {
+                transaction.replace(R.id.xFragmentContainer, new HomeFragmentC());
+                bottomNavigationCustomer();
+            }
+
+            transaction.commit();
+
+            mProgressBar.setVisibility(View.INVISIBLE);
+        } ,2000);
     }
 
     //Shop bottom navigation
