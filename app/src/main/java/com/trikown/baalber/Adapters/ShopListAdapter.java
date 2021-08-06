@@ -5,42 +5,41 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.trikown.baalber.Activity.Customer.BookAppointment;
+import com.trikown.baalber.Activity.BookAppointmentActivity;
+import com.trikown.baalber.Models.Shop;
 import com.trikown.baalber.R;
-
-import org.jetbrains.annotations.NotNull;
+import com.trikown.baalber.databinding.ListItemShopsBinding;
 
 import java.util.ArrayList;
 
 public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHolder> {
 
     Context ctx;
-    ArrayList<String> data;
+    ArrayList<Shop> data;
 
-    public ShopListAdapter(Context ctx, ArrayList<String> data) {
+    public ShopListAdapter(Context ctx, ArrayList<Shop> data) {
         this.ctx = ctx;
         this.data = data;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.shops_list_item, parent, false);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(ctx).inflate(R.layout.list_item_shops, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        holder.mShopName.setText(data.get(position));
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.b.xShopName.setText(data.get(position).getShopName());
+        holder.b.timings.setText(data.get(position).getOpen() + " - " + data.get(position).getClose());
+        holder.b.xRating.setText(data.get(position).getRating() + " / 5");
 
-        holder.mCard.setOnClickListener(v -> {
-            Intent i = new Intent(ctx, BookAppointment.class);
+        holder.b.xShopImage.setOnClickListener(v -> {
+            Intent i = new Intent(ctx, BookAppointmentActivity.class);
+            i.putExtra("shopCode", data.get(position).getShopCode());
             ctx.startActivity(i);
         });
     }
@@ -52,14 +51,11 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mShopName;
-        CardView mCard;
+        private ListItemShopsBinding b;
 
-        public ViewHolder(@NonNull @NotNull View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
-
-            mShopName = itemView.findViewById(R.id.xShopName);
-            mCard = itemView.findViewById(R.id.xCard);
+            b = ListItemShopsBinding.bind(itemView);
         }
     }
 }

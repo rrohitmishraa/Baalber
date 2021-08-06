@@ -1,4 +1,4 @@
-package com.trikown.baalber.Fragment.BottomNav.Shop;
+package com.trikown.baalber.Fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,22 +19,20 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.trikown.baalber.R;
+import com.trikown.baalber.databinding.FragmentPersonalDetailsBinding;
 
 public class PersonalFragment extends Fragment {
+    private FragmentPersonalDetailsBinding b;
 
-    View v;
-    EditText mName, mContact;
-    TextView mEmail;
+
     FirebaseFirestore db;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_personal_details, container, false);
+        b = FragmentPersonalDetailsBinding.inflate(inflater, container, false);
+        View v = b.getRoot();
 
         db = FirebaseFirestore.getInstance();
-
-        mName = v.findViewById(R.id.xName);
-        mEmail = v.findViewById(R.id.xEmail);
 
         getPersonalDetails();
 
@@ -48,8 +46,8 @@ public class PersonalFragment extends Fragment {
 
         db.collection("ShopOwner").document(googleId).get()
                 .addOnSuccessListener(documentSnapshot -> {
-                     mName.setText(documentSnapshot.getString("UserName"));
-                     mEmail.setText(documentSnapshot.getString("Email"));
+                     b.xName.setText(documentSnapshot.getString("UserName"));
+                     b.xEmail.setText(documentSnapshot.getString("Email"));
                 });
     }
 }

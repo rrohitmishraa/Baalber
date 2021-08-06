@@ -3,33 +3,193 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/layout_toolbar" />
+    <include
+        android:id="@+id/xToolbar"
+        layout="@layout/layout_toolbar" />
 
     <ImageView
+        android:id="@+id/shopImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:foreground="@drawable/black_overlay"
         android:scaleType="centerCrop"
-        android:src="@drawable/image" />
+        android:src="@drawable/image"
+        android:transitionName="homeToBooking" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/xToolBar"
+        android:layout_above="@id/xBtnBookApp"
+        android:layout_below="@+id/xToolbar"
+        android:layout_marginBottom="20dp"
         android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
             android:padding="20dp">
 
             <TextView
+                android:id="@+id/shopName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Rohit Mishra"
                 android:textColor="@color/white"
-                android:textSize="35sp" />
+                android:textSize="55sp" />
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/shopName"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/shopName"
+                android:layout_toRightOf="@id/rating"
+                android:padding="5dp"
+                android:src="@drawable/ic_star" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="120dp"
+                android:layout_height="0.5dp"
+                android:layout_below="@id/rating"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/when"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/divider"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Select Date and Time"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/when"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/btn_white"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center|left"
+                android:hint="Date"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/calendar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/when"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@id/date"
+                android:background="@drawable/btn_blue"
+                android:padding="8dp"
+                android:src="@drawable/ic_calendar" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/date"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/btn_white"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center|left"
+                android:hint="Date"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:text="12:00 AM"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/btnTime"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/date"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/time"
+                android:background="@drawable/btn_blue"
+                android:padding="8dp"
+                android:src="@drawable/ic_time" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="120dp"
+                android:layout_height="0.5dp"
+                android:layout_below="@id/time"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/requirements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/divider2"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/montserrat"
+                android:text="What do you need? "
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <CheckBox
+                android:id="@+id/hairCut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/requirements"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/montserrat"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:text="Haircut"
+                android:theme="@style/CheckBox" />
+
+            <CheckBox
+                android:id="@+id/shave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/requirements"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/hairCut"
+                android:fontFamily="@font/montserrat"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:text="Shave"
+                android:theme="@style/CheckBox" />
 
         </RelativeLayout>
 
@@ -49,5 +209,9 @@
         android:paddingRight="20dp"
         android:text="BOOK APPOINTMENT"
         android:textColor="@color/white" />
+
+    <include
+        android:id="@+id/lottieLoader"
+        layout="@layout/lottie_loader" />
 
 </RelativeLayout>

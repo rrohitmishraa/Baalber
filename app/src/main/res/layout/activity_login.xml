@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/xLoginRootLayout"
+    android:id="@+id/loginRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/black_splash_screen">
@@ -20,7 +20,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/xBtnGoogleLogin"
+                android:id="@+id/btnGoogleLogin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="15dp"

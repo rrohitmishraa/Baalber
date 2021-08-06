@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.BottomNav.Shop.HomeFragment">
+    tools:context=".Fragment.HomeFragmentO">
 
     <include
         android:id="@+id/xToolbar"
         layout="@layout/layout_toolbar" />
 
     <TextView
-        android:id="@+id/xCurDate"
+        android:id="@+id/curDay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/xToolbar"
@@ -29,11 +29,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/xCurDate"
+        android:layout_below="@id/curDay"
         android:background="@color/white">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/xHomeTabLayout"
+            android:id="@+id/tabLayout"
             android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,10 +46,10 @@
             app:tabTextColor="@color/subText" />
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/xHomeViewPager"
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/xHomeTabLayout" />
+            android:layout_below="@id/tabLayout" />
 
     </RelativeLayout>
 

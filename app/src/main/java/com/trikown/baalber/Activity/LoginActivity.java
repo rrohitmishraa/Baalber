@@ -2,41 +2,34 @@ package com.trikown.baalber.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.trikown.baalber.R;
 import com.trikown.baalber.Utils.CircularScreenReveal;
+import com.trikown.baalber.databinding.ActivityLoginBinding;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    CoordinatorLayout mLoginRootLayout;
-    TextView mBtnGoogleLogin;
+    private ActivityLoginBinding b;
+
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
     String accountType;
@@ -45,29 +38,28 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        b = ActivityLoginBinding.inflate(getLayoutInflater());
+        View view = b.getRoot();
+        setContentView(view);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        mLoginRootLayout = findViewById(R.id.xLoginRootLayout);
-        mBtnGoogleLogin = findViewById(R.id.xBtnGoogleLogin);
-
         //Circular reveal code
         CircularScreenReveal circularScreenReveal = new CircularScreenReveal(this);
-        circularScreenReveal.layoutCheck(savedInstanceState, mLoginRootLayout);
+        circularScreenReveal.layoutCheck(savedInstanceState, b.loginRootLayout);
 
         //Receiving account type from selection screen
         accountType = getIntent().getStringExtra("accountType");
 
         //different screens for different account types
         if (accountType.equalsIgnoreCase("customer")) {
-            mLoginRootLayout.setBackgroundResource(R.drawable.black_splash_screen);
+            b.loginRootLayout.setBackgroundResource(R.drawable.black_splash_screen);
         } else if(accountType.equalsIgnoreCase("shopOwner")) {
-            mLoginRootLayout.setBackgroundResource(R.drawable.blue_splash_screen);
+            b.loginRootLayout.setBackgroundResource(R.drawable.blue_splash_screen);
         }
 
-        mBtnGoogleLogin.setOnClickListener(v -> createGoogleSignInRequest());
+        b.btnGoogleLogin.setOnClickListener(v -> createGoogleSignInRequest());
     }
 
     private void createGoogleSignInRequest() {
@@ -90,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         //Getting the result returned after clicking the G-mail
@@ -116,7 +108,8 @@ public class LoginActivity extends AppCompatActivity {
                         //if login successful check if user already exist in database
                         db.collection(accountType).document(account.getId()).get()
                                 .addOnCompleteListener(task1 -> {
-                                    if (task1.getResult().exists()) { /*check existence of googleId */
+                                    if (task1.
+                                            getResult().exists()) { /*check existence of googleId */
                                         Toast.makeText(this, "Welcome Back", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Map<String, Object> userDetails = new HashMap<>();
@@ -143,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(this, DashboardActivity.class));
                         finish();
                     } else {
-                        Snackbar.make(findViewById(R.id.xLoginRootLayout), "Authentication Failed", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(R.id.loginRootLayout), "Authentication Failed", Snackbar.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -152,6 +145,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         //Calling reverse reveal from CircularReveal class
         CircularScreenReveal circularScreenReveal = new CircularScreenReveal(LoginActivity.this);
-        circularScreenReveal.reverseCircularReveal(mLoginRootLayout);
+        circularScreenReveal.reverseCircularReveal(b.loginRootLayout);
     }
 }

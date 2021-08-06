@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,39 +15,34 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.trikown.baalber.R;
 import com.trikown.baalber.Utils.CircularScreenReveal;
+import com.trikown.baalber.databinding.ActivitySelectionScreenBinding;
 
 public class SelectionScreenActivity extends AppCompatActivity {
+    private ActivitySelectionScreenBinding b;
 
-    LinearLayout mBtnShop, mBtnCustomer;
-    CoordinatorLayout mSelectRootLayout;
-    TextView mBtnNext;
     String accountType = "Customer";
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selection_screen);
-
-        mBtnCustomer = findViewById(R.id.xBtnCustomer);
-        mBtnShop = findViewById(R.id.xBtnShop);
-        mBtnNext = findViewById(R.id.xBtnNext);
-
-        mSelectRootLayout = findViewById(R.id.xSelectRootLayout);
+        b = ActivitySelectionScreenBinding.inflate(getLayoutInflater());
+        View view = b.getRoot();
+        setContentView(view);
 
         CircularScreenReveal circularScreenReveal = new CircularScreenReveal(this);
-        circularScreenReveal.layoutCheck(savedInstanceState, mSelectRootLayout);
+        circularScreenReveal.layoutCheck(savedInstanceState, b.selectionRootLayout);
 
-        mBtnShop.setOnTouchListener((v, event) -> {
+        b.btnShop.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
                 //reduce size animation if button down
 
                 AnimatorSet reducer = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.reduce_size);
-                reducer.setTarget(mBtnShop);
+                reducer.setTarget(b.btnShop);
                 reducer.start();
 
-                mBtnCustomer.setEnabled(false);
+                b.btnCustomer.setEnabled(false);
 
                 return true;
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -54,18 +50,18 @@ public class SelectionScreenActivity extends AppCompatActivity {
                 //regain size animation in button UP
 
                 AnimatorSet gainer = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.regain_size);
-                gainer.setTarget(mBtnShop);
+                gainer.setTarget(b.btnShop);
                 gainer.start();
 
-                mBtnCustomer.setEnabled(true);
+                b.btnCustomer.setEnabled(true);
 
                 // perform changes to the selection and next button
-                mBtnShop.postDelayed(() -> {
+                b.btnShop.postDelayed(() -> {
 
                     //wait 290 sec (10 sec less than animation end time) then reduce size of another button
 
                     AnimatorSet reducer = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.second_reduce_size);
-                    reducer.setTarget(mBtnCustomer);
+                    reducer.setTarget(b.btnCustomer);
                     reducer.start();
 
                     accountType = "ShopOwner";
@@ -78,16 +74,16 @@ public class SelectionScreenActivity extends AppCompatActivity {
             }
         });
 
-        mBtnCustomer.setOnTouchListener((v, event) -> {
+        b.btnCustomer.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
                 //reduce size animation if button down
 
                 AnimatorSet reducer = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.reduce_size);
-                reducer.setTarget(mBtnCustomer);
+                reducer.setTarget(b.btnCustomer);
                 reducer.start();
 
-                mBtnShop.setEnabled(false);
+                b.btnShop.setEnabled(false);
 
                 return true;
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -95,18 +91,18 @@ public class SelectionScreenActivity extends AppCompatActivity {
                 //regain size animation in button UP
 
                 AnimatorSet gainer = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.regain_size);
-                gainer.setTarget(mBtnCustomer);
+                gainer.setTarget(b.btnCustomer);
                 gainer.start();
 
-                mBtnShop.setEnabled(true);
+                b.btnShop.setEnabled(true);
 
                 // perform changes to the selection and next button
-                mBtnCustomer.postDelayed(() -> {
+                b.btnCustomer.postDelayed(() -> {
 
                     //wait 190 sec (10 sec less than animation end time) then reduce size of another button
 
                     AnimatorSet reducer = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.second_reduce_size);
-                    reducer.setTarget(mBtnShop);
+                    reducer.setTarget(b.btnShop);
                     reducer.start();
 
                     accountType = "Customer";
@@ -119,7 +115,7 @@ public class SelectionScreenActivity extends AppCompatActivity {
             }
         });
 
-        mBtnNext.setOnClickListener(v -> {
+        b.btnNext.setOnClickListener(v -> {
             Intent i = new Intent(this, LoginActivity.class);
             i.putExtra("accountType", accountType);
             overridePendingTransition(0, 0);
@@ -129,16 +125,16 @@ public class SelectionScreenActivity extends AppCompatActivity {
 
     private void changeSize(float sValue, float cValue, float sElevation, float cElevation, String contAs, int btnBackground) {
 
-        mBtnCustomer.setScaleX(cValue);
-        mBtnCustomer.setScaleY(cValue);
+        b.btnCustomer.setScaleX(cValue);
+        b.btnCustomer.setScaleY(cValue);
 
-        mBtnShop.setScaleX(sValue);
-        mBtnShop.setScaleY(sValue);
+        b.btnShop.setScaleX(sValue);
+        b.btnShop.setScaleY(sValue);
 
-        mBtnShop.setElevation(sElevation); //20f for big & 8f for small
-        mBtnCustomer.setElevation(cElevation);
+        b.btnShop.setElevation(sElevation); //20f for big & 8f for small
+        b.btnCustomer.setElevation(cElevation);
 
-        mBtnNext.setText("Continue as " + contAs);
-        mBtnNext.setBackgroundResource(btnBackground);
+        b.btnNext.setText("Continue as " + contAs);
+        b.btnNext.setBackgroundResource(btnBackground);
     }
 }

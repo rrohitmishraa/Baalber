@@ -15,6 +15,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="20dp"
+        android:fontFamily="@font/montserrat"
         android:layout_marginRight="20dp"
         android:background="@drawable/bg_circular_black_outline"
         android:hint="Search - Shop, Area, Piconde"
@@ -27,7 +28,7 @@
         android:textSize="16sp" />
 
     <ImageView
-        android:id="@+id/xBtnSearch"
+        android:id="@+id/btnSearch"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_below="@id/xToolbar"
@@ -54,7 +55,7 @@
             android:textColor="@color/black" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/xHomeRecyclerviewC"
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp" />

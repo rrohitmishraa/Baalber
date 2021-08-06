@@ -1,4 +1,4 @@
-package com.trikown.baalber.Fragment.BottomNav.Shop;
+package com.trikown.baalber.Fragment;
 
 import android.os.Bundle;
 
@@ -9,15 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.trikown.baalber.R;
+import com.trikown.baalber.databinding.FragmentPersonalDetailsBinding;
 
-public class ShopFragment extends Fragment {
+public class ShopDetailsFragment extends Fragment {
 
-    View v;
+    private FragmentPersonalDetailsBinding b;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_shop_details, container, false);
-
+        b = FragmentPersonalDetailsBinding.inflate(inflater, container, false);
+        View v = b.getRoot();
 
 
         return v;
