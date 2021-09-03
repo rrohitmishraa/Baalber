@@ -18,13 +18,12 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.trikown.baalber.Models.Customer;
 import com.trikown.baalber.R;
 import com.trikown.baalber.Utils.CircularScreenReveal;
 import com.trikown.baalber.databinding.ActivityLoginBinding;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
     String accountType;
-    FirebaseFirestore db;
+    DatabaseReference db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(view);
 
         mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        db = FirebaseDatabase.getInstance().getReference();
 
         //Circular reveal code
         CircularScreenReveal circularScreenReveal = new CircularScreenReveal(this);
@@ -53,9 +52,9 @@ public class LoginActivity extends AppCompatActivity {
         accountType = getIntent().getStringExtra("accountType");
 
         //different screens for different account types
-        if (accountType.equalsIgnoreCase("customer")) {
+        if (accountType.equalsIgnoreCase("Customer")) {
             b.loginRootLayout.setBackgroundResource(R.drawable.black_splash_screen);
-        } else if(accountType.equalsIgnoreCase("shopOwner")) {
+        } else if(accountType.equalsIgnoreCase("ShopOwner")) {
             b.loginRootLayout.setBackgroundResource(R.drawable.blue_splash_screen);
         }
 
@@ -106,27 +105,25 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
 
                         //if login successful check if user already exist in database
-                        db.collection(accountType).document(account.getId()).get()
+                        db.child(accountType).child(account.getId()).get()
                                 .addOnCompleteListener(task1 -> {
                                     if (task1.
                                             getResult().exists()) { /*check existence of googleId */
                                         Toast.makeText(this, "Welcome Back", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Map<String, Object> userDetails = new HashMap<>();
-                                        userDetails.put("UserName", account.getDisplayName());
-                                        userDetails.put("Email", account.getEmail());
-                                        userDetails.put("ProfilePic", account.getPhotoUrl().toString());
+                                        Customer customer = new Customer(account.getEmail(), account.getPhotoUrl().toString(), account.getDisplayName());
 
-                                        db.collection(accountType)
-                                                .document(account.getId())
-                                                .set(userDetails)
+                                        db.child(accountType)
+                                                .child(account.getId())
+                                                .child("CustomerInfo")
+                                                .setValue(customer)
                                                 .addOnSuccessListener(aVoid -> {
                                                     Toast.makeText(LoginActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
                                                 });
                                     }
 
                                     //save googleId in Shared Preference
-                                    SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.sharedData), MODE_PRIVATE).edit();
+                                    SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.sharedPreference), MODE_PRIVATE).edit();
                                     editor.putString("googleId", account.getId());
                                     editor.putString("accountType", accountType);
                                     editor.apply();

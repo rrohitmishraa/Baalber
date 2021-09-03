@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -22,11 +23,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class SlotsDialog extends AppCompatDialogFragment implements SlotsClickedListener{
+public class SlotsDialog extends AppCompatDialogFragment implements SlotsClickedListener {
 
     DialogSlotsBinding b;
-    ArrayList<String> timeList;
+    ArrayList<String> completeTimeList;
     DialogToActivity mListener;
+    String date, shopCode;
 
     @Override
     public void onAttach(Context context) {
@@ -37,13 +39,17 @@ public class SlotsDialog extends AppCompatDialogFragment implements SlotsClicked
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         b = DialogSlotsBinding.inflate(LayoutInflater.from(getActivity()));
+        completeTimeList = new ArrayList<>();
 
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(getActivity());
         builder.setView(b.getRoot())
                 .setTitle("Available Time Slots: ");
 
-        new Repo().getShopDetails(getArguments().getString("ShopCode"), shop -> {
+        date = getArguments().getString("Date");
+        shopCode = getArguments().getString("ShopCode");
+
+        new Repo().getShopDetails(shopCode, shop -> {
             availableSlots(shop.getOpen(), shop.getClose());
         });
 
@@ -51,40 +57,43 @@ public class SlotsDialog extends AppCompatDialogFragment implements SlotsClicked
     }
 
     private void availableSlots(String openTime, String closeTime) {
-        timeList = new ArrayList<>();
+        new Repo().getAllBookedTimeSlots(date, shopCode, usedTimeSlots -> {
 
-        SimpleDateFormat df = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-        //String time = df.format(new Date());
+            SimpleDateFormat df = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+            //String time = df.format(new Date());
 
-        Date oTime = null, cTime = null;
-        try {
-            oTime = df.parse(openTime);
-            cTime = df.parse(closeTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            Date oTime = null, cTime = null;
+            try {
+                oTime = df.parse(openTime);
+                cTime = df.parse(closeTime);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
-        Calendar cal = Calendar.getInstance();
+            Calendar cal = Calendar.getInstance();
 
-        cal.setTime(oTime);
-        timeList.add(df.format(cal.getTime()));
+            cal.setTime(oTime);
+            completeTimeList.add(df.format(cal.getTime()));
 
-        while (cal.getTime().before(cTime)) {
-            cal.add(Calendar.MINUTE, 15);
-            timeList.add(df.format(cal.getTime()));
-        }
+            while (cal.getTime().before(cTime)) {
+                cal.add(Calendar.MINUTE, 15);
+                completeTimeList.add(df.format(cal.getTime()));
+            }
 
-        timeList.remove(timeList.size() - 1);
+            completeTimeList.remove(completeTimeList.size() - 1);
+            completeTimeList.removeAll(usedTimeSlots);
 
-        SlotsListAdapter adapter = new SlotsListAdapter(getContext(), timeList, this);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
-        b.recyclerView.setLayoutManager(layoutManager);
-        b.recyclerView.setAdapter(adapter);
+            SlotsListAdapter adapter = new SlotsListAdapter(getContext(), completeTimeList, this);
+            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
+            b.recyclerView.setLayoutManager(layoutManager);
+            b.recyclerView.setAdapter(adapter);
+
+        });
     }
 
     @Override
     public void onSlotClicked(int pos) {
-        String time = timeList.get(pos);
+        String time = completeTimeList.get(pos);
         mListener.getData(time);
         dismiss();
     }

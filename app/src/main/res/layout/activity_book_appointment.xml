@@ -120,12 +120,11 @@
                 android:background="@drawable/btn_white"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center|left"
-                android:hint="Date"
+                android:hint="Time"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
-                android:text="12:00 AM"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 

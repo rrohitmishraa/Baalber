@@ -1,17 +1,21 @@
 package com.trikown.baalber.Activity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.ImageViewCompat;
 
 import com.trikown.baalber.Dialog.SlotsDialog;
 import com.trikown.baalber.Interface.DialogToActivity;
+import com.trikown.baalber.Models.Appointment;
 import com.trikown.baalber.R;
 import com.trikown.baalber.Repository.Repo;
 import com.trikown.baalber.Utils.RemoveWhiteFlash;
@@ -64,8 +68,34 @@ public class BookAppointmentActivity extends AppCompatActivity implements Dialog
 
     private void onClicks() {
         b.xBtnBookApp.setOnClickListener(v -> {
-            /*Intent i = new Intent(this, ConfirmBookingActivity.class);
-            startActivity(i);*/
+            Intent i = new Intent(this, ConfirmBookingActivity.class);
+
+            int haircut, shave;
+
+            if (b.hairCut.isChecked()) {
+                haircut = 1;
+            } else {
+                haircut = 0;
+            }
+
+            if (b.shave.isChecked()) {
+                shave = 1;
+            } else {
+                shave = 0;
+            }
+
+            if (b.time.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Please select a time slot", Toast.LENGTH_SHORT).show();
+            } else if (haircut == 1 || shave == 1) {
+                SharedPreferences sp = getSharedPreferences(getString(R.string.sharedPreference), MODE_PRIVATE);
+                String userCode = sp.getString("googleId", null);
+
+                Appointment ap = new Appointment("n", shopCode, b.time.getText().toString(), userCode, b.date.getText().toString(), haircut, shave);
+                i.putExtra("BUNDLE", ap);
+                startActivity(i);
+            } else {
+                Toast.makeText(this, "Please select what you need", Toast.LENGTH_SHORT).show();
+            }
         });
 
         b.calendar.setOnClickListener(v -> {
@@ -101,6 +131,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Dialog
         SlotsDialog slots = new SlotsDialog();
         Bundle args = new Bundle();
         args.putString("ShopCode", shopCode);
+        args.putString("Date", b.date.getText().toString());
         slots.setArguments(args);
         slots.show(getSupportFragmentManager(), "slots");
     }

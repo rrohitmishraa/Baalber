@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <include
+        android:id="@+id/lottieLoader"
+        layout="@layout/lottie_loader" />
+
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
@@ -17,15 +21,10 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="bottom"
-        android:background="@color/blue"
-        android:elevation="8dp"
+        android:elevation="20dp"
         android:padding="10dp"
-        app:cnb_menuResource="@menu/bottom_nav_menu"
+        app:cnb_menuResource="@menu/b_nav_menu"
         app:cnb_textAppearance="@font/montserrat"
-        app:cnb_unselectedColor="@color/white" />
-
-    <include
-        android:id="@+id/lottieLoader"
-        layout="@layout/lottie_loader" />
+        app:cnb_unselectedColor="@color/blue" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
