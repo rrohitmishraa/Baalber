@@ -71,7 +71,7 @@ public class ConfirmBookingActivity extends AppCompatActivity {
                             } else {
                                 //First Slot
                                 new Repo().createAppointment(appointment);
-                                //new Repo().addAppointmentForCustomer(appointment);
+                                new Repo().addAppointmentForCustomer(appointment);
 
                                 //Second Slot
                                 appointment.setTime(nextSlot);
@@ -87,7 +87,6 @@ public class ConfirmBookingActivity extends AppCompatActivity {
                 new Repo().createAppointment(appointment);
                 new Repo().addAppointmentForCustomer(appointment);
                 appointmentDoneAnimation(appointment);
-
             }
         });
     }

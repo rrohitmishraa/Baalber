@@ -68,7 +68,7 @@ public class DashboardActivity extends AppCompatActivity {
             b.bottomNavBar.setVisibility(View.VISIBLE);
         }, 2000);
 
-        new Handler().postDelayed(() -> b.lottieLoader.progressBar.setVisibility(View.GONE), 3000);
+        new Handler().postDelayed(() -> b.lottieLoader.progressBar.setVisibility(View.GONE), 3500);
     }
 
     //Shop bottom navigation

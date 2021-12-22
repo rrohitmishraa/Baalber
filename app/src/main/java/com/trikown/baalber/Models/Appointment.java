@@ -4,11 +4,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Appointment implements Parcelable {
-    String Complete, ShopCode, Time, UserCode, Date;
+    String Status, ShopCode, Time, UserCode, Date;
     int Haircut, Shave;
 
-    public Appointment(String complete, String shopCode, String time, String userCode, String date, int haircut, int shave) {
-        Complete = complete;
+    public Appointment() {
+    }
+
+    public Appointment(String status, String shopCode, String time, String userCode, String date, int haircut, int shave) {
+        Status = status;
         ShopCode = shopCode;
         Time = time;
         UserCode = userCode;
@@ -18,7 +21,7 @@ public class Appointment implements Parcelable {
     }
 
     protected Appointment(Parcel in) {
-        Complete = in.readString();
+        Status = in.readString();
         ShopCode = in.readString();
         Time = in.readString();
         UserCode = in.readString();
@@ -39,12 +42,12 @@ public class Appointment implements Parcelable {
         }
     };
 
-    public String getComplete() {
-        return Complete;
+    public String getStatus() {
+        return Status;
     }
 
-    public void setComplete(String complete) {
-        Complete = complete;
+    public void setStatus(String status) {
+        Status = status;
     }
 
     public String getShopCode() {
@@ -102,7 +105,7 @@ public class Appointment implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(Complete);
+        parcel.writeString(Status);
         parcel.writeString(ShopCode);
         parcel.writeString(Time);
         parcel.writeString(UserCode);

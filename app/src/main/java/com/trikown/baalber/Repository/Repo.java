@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.trikown.baalber.Adapters.AppointmentsAdapter;
 import com.trikown.baalber.Adapters.ShopListAdapter;
 import com.trikown.baalber.Interface.CustomerDetailsInterface;
 import com.trikown.baalber.Interface.ShopDetailsInterface;
@@ -16,7 +17,6 @@ import com.trikown.baalber.Models.Customer;
 import com.trikown.baalber.Models.Shop;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Repo {
     DatabaseReference db = FirebaseDatabase.getInstance().getReference();
@@ -96,7 +96,7 @@ public class Repo {
                 .child("CustomerInfo")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(DataSnapshot snapshot) {
                         Customer customer = snapshot.getValue(Customer.class);
                         customerDetailsInterface.getCustomerDetails(customer);
                     }
@@ -117,15 +117,42 @@ public class Repo {
     }
 
     public void addAppointmentForCustomer(Appointment appointment) {
-        HashMap<String, Object> appointmentInfo = new HashMap<>();
-        appointmentInfo.put("ShopCode", appointment.getShopCode());
-        appointmentInfo.put("Date", appointment.getDate());
-        appointmentInfo.put("Time", appointment.getTime());
-
         db.child(CUSTOMERS)
                 .child(appointment.getUserCode())
                 .child(APPOINTMENTS)
-                .push()
-                .setValue(appointmentInfo);
+                .child(appointment.getTime())
+                .setValue(appointment);
+    }
+
+    public void getAppointmentsForCustomer(String customerId, AppointmentsAdapter adapter, ArrayList<Appointment> data) {
+        db.child(CUSTOMERS).child(customerId).child(APPOINTMENTS)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+
+                            db.child(CUSTOMERS).child(customerId).child(APPOINTMENTS).child(ds.getKey())
+                                    .addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot snapshot) {
+                                            Appointment appointment = ds.getValue(Appointment.class);
+                                            data.add(appointment);
+                                            adapter.notifyDataSetChanged();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 }

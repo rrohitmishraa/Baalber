@@ -19,10 +19,10 @@ import java.util.ArrayList;
 
 public class HomeFragmentC extends Fragment {
 
-    ArrayList<Shop> data;
-
-    ShopListAdapter adapter;
     private FragmentHomeCustomerBinding b;
+
+    ArrayList<Shop> data;
+    ShopListAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -90,7 +90,7 @@ public class BookAppointmentActivity extends AppCompatActivity implements Dialog
                 SharedPreferences sp = getSharedPreferences(getString(R.string.sharedPreference), MODE_PRIVATE);
                 String userCode = sp.getString("googleId", null);
 
-                Appointment ap = new Appointment("n", shopCode, b.time.getText().toString(), userCode, b.date.getText().toString(), haircut, shave);
+                Appointment ap = new Appointment("Pending", shopCode, b.time.getText().toString(), userCode, b.date.getText().toString(), haircut, shave);
                 i.putExtra("BUNDLE", ap);
                 startActivity(i);
             } else {

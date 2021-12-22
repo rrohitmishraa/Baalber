@@ -62,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void createGoogleSignInRequest() {
-
         //Configuring Google sign in request
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -107,8 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                         //if login successful check if user already exist in database
                         db.child(accountType).child(account.getId()).get()
                                 .addOnCompleteListener(task1 -> {
-                                    if (task1.
-                                            getResult().exists()) { /*check existence of googleId */
+                                    if (task1.getResult().exists()) { /*check existence of googleId */
                                         Toast.makeText(this, "Welcome Back", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Customer customer = new Customer(account.getEmail(), account.getPhotoUrl().toString(), account.getDisplayName());
