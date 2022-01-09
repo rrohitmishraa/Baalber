@@ -5,16 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.trikown.baalber.Models.Appointment;
 import com.trikown.baalber.R;
 import com.trikown.baalber.databinding.ListItemAppointmentsBinding;
-import com.trikown.baalber.databinding.ListItemShopsBinding;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapter.ViewHolder> {
 
@@ -39,9 +36,9 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
         holder.b.status.setText(data.get(position).getStatus());
         holder.b.shopName.setText(data.get(position).getShopCode());
 
-        if(data.get(position).getHaircut() == 1 && data.get(position).getShave() == 1) {
+        if (data.get(position).getHaircut() == 1 && data.get(position).getShave() == 1) {
             holder.b.requirement.setText("Haircut \u2022 Shave");
-        } else if(data.get(position).getHaircut() == 1) {
+        } else if (data.get(position).getHaircut() == 1) {
             holder.b.requirement.setText("Haircut");
         } else {
             holder.b.requirement.setText("Shave");
@@ -54,7 +51,8 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ListItemAppointmentsBinding b;
+        private final ListItemAppointmentsBinding b;
+
         public ViewHolder(View itemView) {
             super(itemView);
             b = ListItemAppointmentsBinding.bind(itemView);
