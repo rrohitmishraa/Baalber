@@ -9,6 +9,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.trikown.baalber.Adapters.AppointmentsAdapter;
 import com.trikown.baalber.Adapters.ShopListAdapter;
+import com.trikown.baalber.Adapters.TodayAdapter;
 import com.trikown.baalber.Interface.CustomerDetailsInterface;
 import com.trikown.baalber.Interface.ShopDetailsInterface;
 import com.trikown.baalber.Interface.UsedTimeSlotsInterface;
@@ -155,4 +156,40 @@ public class Repo {
                     }
                 });
     }
+
+    public void getAppointmentsForShop(String shopCode, String date, TodayAdapter adapter, ArrayList<Appointment> data) {
+        db.child(APPOINTMENTS).child(shopCode).child(date).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds: snapshot.getChildren()) {
+                    db.child(APPOINTMENTS).child(shopCode).child(ds.getKey())
+                            .addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    Appointment appointment = ds.getValue(Appointment.class);
+                                    data.add(appointment);
+                                    adapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void addShop(Shop shop) {
+        db.child(APPOINTMENTS)
+                .child(shop.getShopName())
+                .setValue(shop);
+    }
+
 }

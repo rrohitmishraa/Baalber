@@ -10,16 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.trikown.baalber.Models.Appointment;
 import com.trikown.baalber.R;
 import com.trikown.baalber.Repository.Repo;
+import com.trikown.baalber.databinding.FragmentTodayBinding;
 import com.trikown.baalber.databinding.ListItemAppointmentsBinding;
+import com.trikown.baalber.databinding.ListItemShopsBinding;
 
 import java.util.ArrayList;
 
-public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapter.ViewHolder> {
+public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.ViewHolder> {
 
     Context ctx;
     ArrayList<Appointment> data;
 
-    public AppointmentsAdapter(Context ctx, ArrayList<Appointment> data) {
+    public TodayAdapter(Context ctx, ArrayList<Appointment> data) {
         this.ctx = ctx;
         this.data = data;
     }
@@ -36,8 +38,8 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
         holder.b.time.setText(data.get(position).getTime());
         holder.b.status.setText(data.get(position).getStatus());
 
-        new Repo().getShopDetails(data.get(position).getShopCode(), shop ->
-                holder.b.shopName.setText(shop.getShopName()));
+        new Repo().getCustomerDetails("Customer", data.get(position).getUserCode(), customer ->
+                holder.b.shopName.setText(customer.getUserName()));
 
         if (data.get(position).getHaircut() == 1 && data.get(position).getShave() == 1) {
             holder.b.requirement.setText("Haircut \u2022 Shave");
@@ -54,7 +56,8 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final ListItemAppointmentsBinding b;
+
+        public ListItemAppointmentsBinding b;
 
         public ViewHolder(View itemView) {
             super(itemView);

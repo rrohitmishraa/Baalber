@@ -23,6 +23,9 @@
         <entry key="..\:/Projects/AndroidStudioProjects/Baalber/app/src/main/res/menu/b_nav_menu.xml" value="0.33055555555555555" />
         <entry key="..\:/Projects/AndroidStudioProjects/Baalber/app/src/main/res/menu/b_nav_menu_shop.xml" value="0.24722222222222223" />
         <entry key="..\:/Projects/AndroidStudioProjects/Baalber/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24722222222222223" />
+        <entry key="app/src/main/res/layout/fragment_shop_details.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/fragment_today.xml" value="0.22282608695652173" />
+        <entry key="app/src/main/res/layout/list_item_appointments.xml" value="0.3098958333333333" />
       </map>
     </option>
   </component>

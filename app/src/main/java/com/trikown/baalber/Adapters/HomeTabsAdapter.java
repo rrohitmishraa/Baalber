@@ -17,7 +17,6 @@ public class HomeTabsAdapter extends FragmentPagerAdapter {
         this.tabCount = tabCount;
     }
 
-    @NonNull
     @Override
     public Fragment getItem(int position) {
         switch (position) {

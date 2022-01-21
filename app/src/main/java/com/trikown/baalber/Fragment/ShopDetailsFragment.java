@@ -20,6 +20,9 @@ public class ShopDetailsFragment extends Fragment {
         b = FragmentPersonalDetailsBinding.inflate(inflater, container, false);
         View v = b.getRoot();
 
+        b.xBtnSave.setOnClickListener(view -> {
+
+        });
 
         return v;
     }

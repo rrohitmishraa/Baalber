@@ -12,12 +12,13 @@
         android:gravity="center"
         android:fontFamily="@font/montserrat"
         android:textColor="@color/subText"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/xTodayRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
 </RelativeLayout>
